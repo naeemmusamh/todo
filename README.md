@@ -15,12 +15,27 @@ this app create by react and function component to make user or manager can make
 
 [Pull Request](https://github.com/naeemmusamh/todo/pull/1)
 
-## structure lab(26)
+## structure lab(31)
 ------------------------
 
 ![WareFram](./todo/public/lab31warefram.png)
 
-## The Results lab(26)
+## The Results lab(31)
 ------------------------
 
 ![Results](./todo/public/lab31.png)
+
+
+# lab 32 not complete yet
+
+## deploy link
+------------------------
+
+[Live Server](https://naeemmusamh.github.io/todo/)
+
+[Pull Request](https://github.com/naeemmusamh/todo/pull/3)
+
+## structure lab(32)
+------------------------
+
+![WareFram](./todo/public/lab32.png)
