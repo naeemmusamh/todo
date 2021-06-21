@@ -1,24 +1,11 @@
-import React, { useState } from "react";
 import { Form, Button, Card } from "react-bootstrap";
-import "../../App.scss";
+import useForm from "../hooks/useForm.js";
 
 export default function TodoForm(props) {
-  const [list, setList] = useState({});
-
-  const handleInputChange = (e) => {
-    setList({ ...list, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    e.target.reset();
-    props.handleSubmit(list);
-    const newList = {};
-    setList({ newList });
-  };
+  const [handleInputChange, handleSubmit] = useForm(props.handleSubmit);
 
   return (
-    <>
+    <Card>
       <Card.Header as="h3">Add Item</Card.Header>
       <Card.Body>
         <Form onSubmit={handleSubmit}>
@@ -56,6 +43,6 @@ export default function TodoForm(props) {
           </Button>
         </Form>
       </Card.Body>
-    </>
+    </Card>
   );
 }
