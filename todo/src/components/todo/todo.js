@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { Card, Container, ProgressBar, Col, Row } from "react-bootstrap";
+import { useEffect, useState } from "react";
 import TodoForm from "./form.js";
 import TodoList from "./list.js";
-import "../../App.scss";
-import "./todo.scss";
+import TopSection from "./progress.js";
+import { Container, Col, Row } from "react-bootstrap";
 
+import "./todo.scss";
 
 export default function ToDo() {
   const [list, setList] = useState([]);
@@ -34,7 +34,7 @@ export default function ToDo() {
     }
   };
 
-  const _getTodoItems = () => {
+  const getTodoItems = () => {
     let list = [
       {
         _id: 1,
@@ -75,62 +75,24 @@ export default function ToDo() {
     setList(list);
   };
 
-  useEffect(_getTodoItems, []);
+  useEffect(getTodoItems, []);
 
   return (
-    <>
-      <Container>
-        <Row className="mt-5 mb-4">
-          <Col>
-            <Card className="bg-light">
-              <Card.Body>
-                <Card.Title as="h2">To Do List Manager</Card.Title>
-                <ProgressBar>
-                  <ProgressBar
-                    animated 
-                    variant="success"
-                    now={
-                      list.filter((item) => item.complete).length *
-                      list.length *
-                      100
-                    }
-                    key={1}
-                    label={`Completed Items: ${
-                      list.filter((item) => item.complete).length
-                    }`}
-                  />
-                  <ProgressBar
-                    animated 
-                    variant="danger"
-                    now={
-                      list.filter((item) => !item.complete).length *
-                      list.length *
-                      100
-                    }
-                    key={2}
-                    label={`To Do: ${
-                      list.filter((item) => !item.complete).length
-                    }`}
-                  />
-                </ProgressBar>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
+    <Container>
+      <Row className="mt-5 mb-4">
+        <Col>
+          <TopSection list={list} />
+        </Col>
+      </Row>
 
-        <Row>
-          <Col md="4" offset="2">
-            <Card>
-              <TodoForm handleSubmit={addItem} />
-            </Card>
-          </Col>
-          <Col md="8" offset="2">
-            <Card>
-              <TodoList list={list} handleComplete={toggleComplete} />
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-    </>
+      <Row>
+        <Col md="4">
+          <TodoForm handleSubmit={addItem} />
+        </Col>
+        <Col md="8">
+          <TodoList list={list} handleComplete={toggleComplete} />
+        </Col>
+      </Row>
+    </Container>
   );
 }
