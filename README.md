@@ -39,3 +39,17 @@ this app create by react and function component to make user or manager can make
 ------------------------
 
 ![WareFram](./todo/public/lab32.png)
+
+# lab 33 complete with lab 32
+
+## deploy link
+------------------------
+
+[Live Server](https://naeemmusamh.github.io/todo/)
+
+[Pull Request](https://github.com/naeemmusamh/todo/pull/5)
+
+## structure lab(33)
+------------------------
+
+![WareFram](./todo/public/lab33.png)
