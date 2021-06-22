@@ -1,19 +1,19 @@
 import { useState } from "react";
 
-export default function useForm(callback) {
+export default function useForm (handleSubmit) {
   const [item, setItem] = useState({});
 
-  const handleInputChange = (e) => {
+  const _handleInputChange = (e) => {
     setItem({ ...item, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const _handleSubmit = async (e) => {
     e.preventDefault();
     e.target.reset();
-    callback(item);
+    await handleSubmit(item);
     const newItem = {};
     setItem({ newItem });
   };
 
-  return [handleInputChange, handleSubmit];
-}
+  return [_handleInputChange, _handleSubmit];
+};

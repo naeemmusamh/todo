@@ -1,15 +1,16 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Container, Col, Row } from "react-bootstrap";
 import TodoForm from "./form.js";
 import TodoList from "./list.js";
 import TopSection from "./progress.js";
-import useAjax from "../hook/useAjax.js";
+import useAjax from "../../hooks/useAjax.js";
 import "./todo.scss";
 
 const todoAPI = "https://api-js401.herokuapp.com/api/v1/todo";
 
-export default function ToDo() {
-  const [list, postItem, deleteItem, putItem, getItems] = useAjax(todoAPI);
+export default function ToDo () {
+  const [list, setList] = useState([]);
+  const [_postItem, _deleteItem, _putItem, _getItems] = useAjax(todoAPI);
 
   useEffect(
     () =>
@@ -18,7 +19,16 @@ export default function ToDo() {
       }`)
   );
 
-  useEffect(getItems, [getItems]);
+  const _firstRequest = () => {
+    const fetchData = async () => {
+      const data = await _getItems();
+      setList(data.results);
+    };
+    fetchData();
+  };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(_firstRequest, []);
 
   return (
     <Container>
@@ -30,16 +40,17 @@ export default function ToDo() {
 
       <Row>
         <Col md="4">
-          <TodoForm handleSubmit={postItem} />
+          <TodoForm handleSubmit={_postItem} fetch={_firstRequest} />
         </Col>
         <Col md="8">
           <TodoList
             list={list}
-            handleComplete={putItem}
-            handleDelete={deleteItem}
+            handleComplete={_putItem}
+            handleDelete={_deleteItem}
+            fetch={_firstRequest}
           />
         </Col>
       </Row>
     </Container>
   );
-}
+};

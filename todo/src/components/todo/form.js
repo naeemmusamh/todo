@@ -1,14 +1,19 @@
 import { Form, Button, Card } from "react-bootstrap";
-import useForm from "../hooks/useForm.js";
+import useForm from '../../hooks/useForm.js';
 
-export default function TodoForm(props) {
+export default function TodoForm (props) {
   const [handleInputChange, handleSubmit] = useForm(props.handleSubmit);
 
   return (
     <Card>
       <Card.Header as="h3">Add Item</Card.Header>
       <Card.Body>
-        <Form onSubmit={handleSubmit}>
+        <Form
+          onSubmit={async (e) => {
+            await handleSubmit(e);
+            await props.fetch();
+          }}
+        >
           <Form.Group>
             <Form.Label>To Do Item</Form.Label>
             <Form.Control
@@ -45,4 +50,4 @@ export default function TodoForm(props) {
       </Card.Body>
     </Card>
   );
-}
+};

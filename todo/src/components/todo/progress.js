@@ -1,14 +1,14 @@
 import { ProgressBar, Card } from "react-bootstrap";
 
-export default function TopSection({ list }) {
+const TopSection = ({ list }) => {
   return (
     <Card className="bg-light">
       <Card.Body>
         <Card.Title as="h2">To Do List Manager</Card.Title>
         <ProgressBar>
           <ProgressBar
-            striped
             animated
+            striped
             variant="success"
             now={
               list.filter((item) => item.complete).length * list.length * 100
@@ -31,4 +31,6 @@ export default function TopSection({ list }) {
       </Card.Body>
     </Card>
   );
-}
+};
+
+export default TopSection;

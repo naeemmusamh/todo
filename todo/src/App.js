@@ -1,14 +1,21 @@
-import React from "react";
-import { BrowserRouter } from "react-router-dom";
-
-import Main from "./components/main/main.js";
+import { useContext } from "react";
+import PaginationProvider from "./context/pagination.js";
+import ToDo from "./components/todo/todo-connected.js"
 import Header from "./components/header/header.js";
+import Theme from './components/theme/theme-class.js';
+import {ThemeContext} from './context/ThemeContext.js';
+import "./App.scss";
 
-export default function App() {
+export default function App () {
+  const context = useContext(ThemeContext);
+
   return (
-    <BrowserRouter>
-      <Header />
-      <Main />
-    </BrowserRouter>
+    <div className={context.mode}>
+      <Theme/>
+    <Header />
+    <PaginationProvider>
+      <ToDo />
+    </PaginationProvider>
+    </div>
   );
-}
+};
