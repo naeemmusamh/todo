@@ -6,7 +6,7 @@ import { Container, Col, Row } from "react-bootstrap";
 
 import "./todo.scss";
 
-export default function ToDo() {
+export default function ToDo  () {
   const [list, setList] = useState([]);
 
   useEffect(
@@ -16,13 +16,13 @@ export default function ToDo() {
       }`)
   );
 
-  const addItem = (item) => {
+  const _addItem = (item) => {
     item._id = Math.random();
     item.complete = false;
     setList([...list, item]);
   };
 
-  const toggleComplete = (id) => {
+  const _toggleComplete = (id) => {
     let item = list.filter((i) => i._id === id)[0] || {};
 
     if (item._id) {
@@ -34,7 +34,7 @@ export default function ToDo() {
     }
   };
 
-  const getTodoItems = () => {
+  const _getTodoItems = () => {
     let list = [
       {
         _id: 1,
@@ -75,7 +75,7 @@ export default function ToDo() {
     setList(list);
   };
 
-  useEffect(getTodoItems, []);
+  useEffect(_getTodoItems, []);
 
   return (
     <Container>
@@ -87,12 +87,12 @@ export default function ToDo() {
 
       <Row>
         <Col md="4">
-          <TodoForm handleSubmit={addItem} />
+          <TodoForm handleSubmit={_addItem} />
         </Col>
         <Col md="8">
-          <TodoList list={list} handleComplete={toggleComplete} />
+          <TodoList list={list} handleComplete={_toggleComplete} />
         </Col>
       </Row>
     </Container>
   );
-}
+};

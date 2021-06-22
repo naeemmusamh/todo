@@ -1,15 +1,9 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
-import "./header.scss";
+import { Navbar } from "react-bootstrap";
 
-export default function Header(props){
-    return (
-        <header>
-            <span>
-                <ul>
-                    <Link className="link-tag" to="/"> Home </Link>
-                </ul>
-            </span>
-        </header>
-    )
-}
+export default function Header()  {
+  return (
+    <Navbar className="header-bar" bg="primary" variant="dark" expand="lg">
+      <Navbar.Brand href="#">Home</Navbar.Brand>
+    </Navbar>
+  );
+};
