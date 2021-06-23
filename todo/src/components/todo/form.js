@@ -1,8 +1,11 @@
+import { useContext } from "react";
 import { Form, Button, Card } from "react-bootstrap";
 import useForm from '../../hooks/useForm.js';
+import { AuthContext } from '../../context/auth.js';
 
 export default function TodoForm (props) {
   const [handleInputChange, handleSubmit] = useForm(props.handleSubmit);
+  const authContext = useContext(AuthContext);
 
   return (
     <Card>
@@ -10,8 +13,12 @@ export default function TodoForm (props) {
       <Card.Body>
         <Form
           onSubmit={async (e) => {
-            await handleSubmit(e);
-            await props.fetch();
+            if(authContext.user.capabilities.includes('create')){
+              await handleSubmit(e);
+              await props.fetch();
+            }else{
+              alert('sorry dont have the authorization to create 😟')
+            }
           }}
         >
           <Form.Group>

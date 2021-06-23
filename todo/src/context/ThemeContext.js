@@ -12,7 +12,7 @@ export default class ThemeProvider extends React.Component{
     }
 
     toggleMode = ()=>{
-        if(this.state.mode == 'dark'){
+        if(this.state.mode === 'dark'){
             this.setState({mode: 'light'});
         }else{
             this.setState({mode: 'dark'});
