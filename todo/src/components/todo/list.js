@@ -1,21 +1,22 @@
 import { useContext, useState, useEffect } from "react";
 import { Toast, Badge, Pagination, Form, Row, Col } from "react-bootstrap";
 import { PaginationContext } from "../../context/pagination.js";
+import { AuthContext } from "../../context/auth.js";
 
-const TodoList = (props) => {
+export default function TodoList (props) {
   const context = useContext(PaginationContext);
+  const authContext = useContext(AuthContext);
+
   const [currentPage, setCurrentPage] = useState(context.startingPage);
   const maxItems = context.itemCount;
-  // sorting hard-coded according to difficulty
-  // const sortedList = props.list.sort((a, b) => a.difficulty - b.difficulty);
-  // display completed items first
-  // let allList = sortedList.sort((a, b) => {
-  //   return a.complete === b.complete ? 0 : a.complete ? 1 : -1;
-  // });
   const [list, setList] = useState([]);
+
+
   useEffect(() => {
     setList(props.list);
   }, [props.list]);
+
+
   // logic
   const numOfPages = list.length / maxItems + 1;
   const indexOfLastItem = currentPage * maxItems;
@@ -128,8 +129,12 @@ const TodoList = (props) => {
           key={item._id}
           style={{ maxWidth: "100%" }}
           onClose={async () => {
-            await props.handleDelete(item);
-            await props.fetch();
+            if(authContext.user.capabilities.includes('delete')){
+              await props.handleDelete(item);
+              await props.fetch();
+            }else{
+              alert('sorry you dont have the authorization to delete 😟');
+            }
           }}
         >
           <Toast.Header>
@@ -137,8 +142,12 @@ const TodoList = (props) => {
               pill
               variant={item.complete ? "success" : "warning"}
               onClick={async () => {
-                await props.handleComplete(item);
-                await props.fetch();
+                if(authContext.user.capabilities.includes('update')){                  
+                  await props.handleComplete(item);
+                  await props.fetch();
+                }else{
+                  alert('sorry you dont have the authorization to update 😟');
+                }
               }}
               style={{ cursor: "pointer" }}
             >
@@ -165,4 +174,3 @@ const TodoList = (props) => {
     </>
   );
 };
-export default TodoList;
