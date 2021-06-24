@@ -61,6 +61,7 @@ This package serves as the entry point to the DOM and server renderers for React
 This package includes scripts and configuration used by Create React App.
 
 ## deploy link (31)
+
 ------------------------
 
 [Live Server](https://naeemmusamh.github.io/todo/)
@@ -70,19 +71,21 @@ This package includes scripts and configuration used by Create React App.
 [Pull Request](https://github.com/naeemmusamh/todo/pull/1)
 
 ## structure lab(31)
+
 ------------------------
 
-![WareFram](./todo/public/lab31warefram.png)
+![WareFrame](./todo/public/lab31warefram.png)
 
 ## The Results lab(31)
+
 ------------------------
 
 ![Results](./todo/public/lab31.png)
 
-
 # lab 32 not complete yet
 
 ## deploy link
+
 ------------------------
 
 [Live Server](https://naeemmusamh.github.io/todo/)
@@ -90,13 +93,15 @@ This package includes scripts and configuration used by Create React App.
 [Pull Request](https://github.com/naeemmusamh/todo/pull/3)
 
 ## structure lab(32)
+
 ------------------------
 
-![WareFram](./todo/public/lab32.png)
+![WareFrame](./todo/public/lab32.png)
 
 # lab 33 complete with lab 32
 
 ## deploy link
+
 ------------------------
 
 [Live Server](https://naeemmusamh.github.io/todo/)
@@ -104,6 +109,25 @@ This package includes scripts and configuration used by Create React App.
 [Pull Request](https://github.com/naeemmusamh/todo/pull/5)
 
 ## structure lab(33)
+
 ------------------------
 
-![WareFram](./todo/public/lab33.png)
+![WareFrame](./todo/public/lab33.png)
+
+# lab 34
+
+## deploy link
+
+------------------------
+
+[Live Server](https://naeemmusamh.github.io/todo/)
+
+[Pull Request](https://github.com/naeemmusamh/todo/pull/7)
+
+## structure lab 34
+
+------------------------
+
+![WareFrame](./todo/public/lab34.png)
+
+![WareFrame](./todo/public/lab34a.png)
